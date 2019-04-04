@@ -1,1 +1,9 @@
 :)
+
+purpose
+	https://reelgood.com/roulette/netflix
+	https://spoonacular.com/food-api
+	https://untappd.com/api/docs
+
+
+type in a food you like and keyword for netflix, generates a good night
