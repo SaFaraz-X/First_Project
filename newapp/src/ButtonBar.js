@@ -10,8 +10,10 @@ export default class ButtonBar extends Component {
     render(){
         return(
             <div>
+                 <button onClick={() => this.SOMEFUNCTION}>MOVIE/SHOW</button>
+                 <button onClick={() => this.SOMEFUNCTION}>FOOD</button>
 
             </div>
         );
     }
-}
+}  
