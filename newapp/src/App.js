@@ -4,11 +4,18 @@ import './App.css';
 import axios from "axios";
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      recipe_results: [],
+      netflix_result: "",
+      recipe_link: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?"
+    };
+  }
 
-
-  doSearch = () =>{
+  doSearchRecipe = () =>{
     axios
-      .get("")
+      .get(recipe_link)
       .then(response=>{
         let recipes = response.data.collection.items
         recipes.forEach(recipe =>{
@@ -25,6 +32,19 @@ class App extends Component {
 
   addRecipe = (link) => {
     
+  };
+
+  getNetflix = () =>{
+    axios
+      .get("https://reelgood.com/roulette/netflix")
+      .then(response=>{
+
+
+
+      })
+      .catch(error =>{
+        console.log(error);
+      });  
   };
 
 
