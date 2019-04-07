@@ -1,12 +1,31 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from "axios";
 
 class App extends Component {
 
 
+  doSearch = () =>{
+    axios
+      .get("")
+      .then(response=>{
+        let recipes = response.data.collection.items
+        recipes.forEach(recipe =>{
+          if(recipe.links){
+            this.addRecipe(recipe.links[0].href);
+          }
+        });
+        console.log("it worked!");
+      })
+      .catch(error =>{
+        console.log(error);
+      });  
+  };
 
-  
+  addRecipe = (link) => {
+    
+  };
 
 
   render() {
