@@ -9,11 +9,12 @@ class App extends Component {
     this.state = {
       recipe_results: [],
       netflix_result: "",
-      recipe_link: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?"
+      recipe_link: "https://www.food2fork.com/api/search?key=c7bb731e2fbd795d64316b905bed8368&q=",
+      recipe_search: ""
     };
   }
 
-  doSearchRecipe = () =>{
+  /*doSearchRecipe = () =>{
     axios
       .get(recipe_link)
       .then(response=>{
@@ -32,27 +33,34 @@ class App extends Component {
 
   addRecipe = (link) => {
     
-  };
+  };*/
 
-  getNetflix = () =>{
+  /*getNetflix = () =>{
     axios
       .get("https://reelgood.com/roulette/netflix")
       .then(response=>{
-
-
 
       })
       .catch(error =>{
         console.log(error);
       });  
   };
-
+*/
+/*
+let x = document.getElemenyByIs("form1");
+          let recipe_search = 
+*/
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+
+          <input id = "data" size = "30"></input>
+          <br></br>
+          <button >Help</button>
+
 
           <a
             className="App-link"
