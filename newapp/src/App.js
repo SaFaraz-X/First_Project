@@ -14,8 +14,20 @@ class App extends Component {
     };
   }
 
-  /*doSearchRecipe = () =>{
-    axios
+  getRecipeSearch = (e) =>{
+    this.setState({
+      recipe_search: e.target.value
+    });
+  };
+
+
+  doSearchRecipe = () =>{
+    console.log(this.state.recipe_search);
+    this.setState({
+      recipe_link: this.state.recipe_link + this.state.recipe_search
+    });
+    console.log(this.state.recipe_link);
+    /*axios
       .get(recipe_link)
       .then(response=>{
         let recipes = response.data.collection.items
@@ -28,12 +40,12 @@ class App extends Component {
       })
       .catch(error =>{
         console.log(error);
-      });  
+      });  */
   };
 
   addRecipe = (link) => {
     
-  };*/
+  };
 
   /*getNetflix = () =>{
     axios
@@ -57,10 +69,9 @@ let x = document.getElemenyByIs("form1");
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
 
-          <input id = "data" size = "30"></input>
+          <input onChange={e=>this.getRecipeSearch(e)} size = "30"></input>
           <br></br>
-          <button >Help</button>
-
+          <button onClick={()=>this.doSearchRecipe()}>Find Recipe</button>
 
           <a
             className="App-link"
