@@ -7,45 +7,51 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      recipe_results: [],
+      recipe_name: "",
       netflix_result: "",
-      recipe_link: "https://www.food2fork.com/api/search?key=c7bb731e2fbd795d64316b905bed8368&q=",
-      recipe_search: ""
+      recipe_api: "",
+      recipe_image:"",
+      recipe_link:"",
+      href_text: ""
     };
   }
 
+  //obtain text from input field
   getRecipeSearch = (e) =>{
+    let search = e.target.value;
+    let newLink = "https://www.food2fork.com/api/search?key=c7bb731e2fbd795d64316b905bed8368&q=" + search;
     this.setState({
-      recipe_search: e.target.value
+      recipe_api: newLink 
     });
   };
 
 
-  doSearchRecipe = () =>{
-    console.log(this.state.recipe_search);
-    this.setState({
-      recipe_link: this.state.recipe_link + this.state.recipe_search
-    });
-    console.log(this.state.recipe_link);
-    /*axios
-      .get(recipe_link)
-      .then(response=>{
-        let recipes = response.data.collection.items
-        recipes.forEach(recipe =>{
-          if(recipe.links){
-            this.addRecipe(recipe.links[0].href);
-          }
+  doSearchRecipe = () =>{ 
+      axios
+      .get(this.state.recipe_api)
+      .then(response => {
+        console.log(response)
+        if(response.data.recipes.length == 0) {
+          console.log("SAD");
+        }
+        this.setState({
+          recipe_name: response.data.recipes[0].title,
+          recipe_image: response.data.recipes[0].image_url,
+          recipe_link: response.data.recipes[0].source_url,
+          href_text: "Link to Recipe For " + response.data.recipes[0].title
         });
-        console.log("it worked!");
+        console.log(this.state.recipe_name);
+        console.log(this.state.recipe_link);
+        // let pics = response.data.collection.items
+        // pics.forEach(pic => {
+        //   if(pic.links){
+        //     this.addPic(pic.links[0].href);
+        //   }
+        // });
+        console.log("images!")
       })
-      .catch(error =>{
-        console.log(error);
-      });  */
   };
 
-  addRecipe = (link) => {
-    
-  };
 
   /*getNetflix = () =>{
     axios
@@ -64,6 +70,17 @@ let x = document.getElemenyByIs("form1");
 */
 
   render() {
+
+    // let pics = []
+    // pics = this.state.recipe_results;
+    // let images = []
+    // if(pics.length > 1){
+    //   images = pics.map(pic => {
+    //     return <img src = {pic} />;
+    //   })
+    // }
+
+    
     return (
       <div className="App">
         <header className="App-header">
@@ -72,6 +89,10 @@ let x = document.getElemenyByIs("form1");
           <input onChange={e=>this.getRecipeSearch(e)} size = "30"></input>
           <br></br>
           <button onClick={()=>this.doSearchRecipe()}>Find Recipe</button>
+          {this.state.recipe_name} <br></br>
+          <img src={this.state.recipe_image}></img> <br></br>
+          <a href={this.state.recipe_link}> {this.state.href_text}</a>
+         
 
           <a
             className="App-link"
